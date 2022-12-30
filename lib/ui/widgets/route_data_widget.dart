@@ -24,7 +24,6 @@ class RouteListWidget extends StatelessWidget {
           const Text('ESTAS SON TUS RUTAS'),
           const SizedBox(height: 16),
           _RouteCardWidget(
-            selected: true,
             route: routeComplete,
           ),
           const SizedBox(height: 32),
@@ -50,10 +49,8 @@ class RouteListWidget extends StatelessWidget {
 }
 
 class _RouteCardWidget extends StatefulWidget {
-  final bool selected;
   final Routes route;
   const _RouteCardWidget({
-    this.selected = false,
     required this.route,
   });
 
@@ -66,9 +63,13 @@ class _RouteCardWidgetState extends State<_RouteCardWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => setState(() {
-        _selected = !_selected;
-      }),
+      onTap: () {
+        if (!widget.route.completed) {
+          setState(() {
+            _selected = !_selected;
+          });
+        }
+      },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
@@ -82,35 +83,43 @@ class _RouteCardWidgetState extends State<_RouteCardWidget> {
         ),
         padding: const EdgeInsets.all(16),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(Icons.pages),
-            const SizedBox(width: 24),
             Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  const Icon(Icons.pages),
+                  const SizedBox(width: 24),
                   Flexible(
-                    child: Text(
-                      'Nombre de el destino: ${widget.route.name}',
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Flexible(
-                    child: Text(
-                      'Distancia promedio al destino :${widget.route.distance.toString()} km',
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.caption!.copyWith(
-                            color: Colors.grey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            'Nombre de el destino: ${widget.route.name}',
+                            overflow: TextOverflow.ellipsis,
                           ),
+                        ),
+                        const SizedBox(height: 8),
+                        Flexible(
+                          child: Text(
+                            'Distancia promedio al destino :${widget.route.distance.toString()} km',
+                            overflow: TextOverflow.ellipsis,
+                            style:
+                                Theme.of(context).textTheme.caption!.copyWith(
+                                      color: Colors.grey,
+                                    ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-            const Spacer(),
-            if (widget.selected) const Icon(Icons.check),
+            if (widget.route.completed) const Icon(Icons.check),
           ],
         ),
       ),
