@@ -1,5 +1,7 @@
+import 'package:dashfleet_ui/ui/mocks.dart';
 import 'package:dashfleet_ui/ui/pages/routes_page.dart';
 import 'package:dashfleet_ui/ui/pages/welcome_page.dart';
+import 'package:dashfleet_ui/ui/widgets/route_data_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainBasePage extends StatefulWidget {
@@ -12,12 +14,15 @@ class MainBasePage extends StatefulWidget {
 class _MainBasePageState extends State<MainBasePage> {
   int _selectedIndex = 1;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('MORE!'),
-    WelcomePage(),
-    RoutesPage(),
-    Text('Money'),
-    Text('Configuration'),
+  final List<Widget> _widgetOptions = <Widget>[
+    const Text('MORE!'),
+    const WelcomePage(),
+    RouteListWidget(
+      routeComplete: mockRouteCompleted,
+      routesToDo: mockRoutes,
+    ),
+    const Text('Money'),
+    const Text('Configuration'),
   ];
 
   void _onItemTapped(int index) {

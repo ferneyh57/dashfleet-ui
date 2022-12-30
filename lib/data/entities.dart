@@ -9,22 +9,22 @@ enum RouteState {
   canceled,
 }
 
-class Route {
+class Routes {
   final String name;
   final double distance;
   final bool completed;
-  Route({
+  Routes({
     required this.name,
     required this.distance,
     this.completed = false,
   });
 
-  Route copyWith({
+  Routes copyWith({
     String? name,
     double? distance,
     bool? completed,
   }) {
-    return Route(
+    return Routes(
       name: name ?? this.name,
       distance: distance ?? this.distance,
       completed: completed ?? this.completed,
@@ -39,8 +39,8 @@ class Route {
     };
   }
 
-  factory Route.fromMap(Map<String, dynamic> map) {
-    return Route(
+  factory Routes.fromMap(Map<String, dynamic> map) {
+    return Routes(
       name: map['name'] as String,
       distance: map['distance'] as double,
       completed: map['completed'] as bool,
@@ -49,15 +49,15 @@ class Route {
 
   String toJson() => json.encode(toMap());
 
-  factory Route.fromJson(String source) =>
-      Route.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Routes.fromJson(String source) =>
+      Routes.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
       'Route(name: $name, distance: $distance, completed: $completed)';
 
   @override
-  bool operator ==(covariant Route other) {
+  bool operator ==(covariant Routes other) {
     if (identical(this, other)) return true;
 
     return other.name == name &&
