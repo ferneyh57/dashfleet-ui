@@ -1,5 +1,8 @@
 import 'package:dashfleet_ui/ui/controllers/log_in_controller.dart';
+import 'package:dashfleet_ui/ui/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
+
+import 'main_page.dart';
 
 class LogInPage extends StatefulWidget {
   final LogInController controller;
@@ -101,10 +104,16 @@ class _LogInPageState extends State<LogInPage> {
   }
 
   void signIn() {
-    widget.controller.onLogIn(
+    final loginIsValid = widget.controller.onLogIn(
       cell: controllerCel.value.text,
       password: controllerPass.value.text,
     );
+    if (loginIsValid) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MainBasePage()),
+      );
+    }
   }
 }
 

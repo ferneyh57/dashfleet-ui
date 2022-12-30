@@ -21,10 +21,12 @@ class LogInController {
   }
 
   /// Permite loguerase.
-  void onLogIn({
+  bool onLogIn({
     required String cell,
     required String password,
-  }) {}
+  }) {
+    return true;
+  }
 
   /// Recuperar la contraseña mediante el numero de celular.
   void onForgotPass(String cell) {
