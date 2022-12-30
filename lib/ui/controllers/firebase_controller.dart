@@ -5,7 +5,8 @@ class FirebaseController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 // Sign in a user with their phone number and password
-  Future<bool> signIn(String phoneNumber, String password) async {
+  Future<bool> signIn(
+      {required String phoneNumber, required String password}) async {
     // Get the user document with the matching phone number
     QuerySnapshot snapshot = await _firestore
         .collection('users')

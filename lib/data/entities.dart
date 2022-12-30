@@ -71,22 +71,22 @@ class Routes {
 
 /// Info basica de los usuarios.
 class User {
-  final String email;
+  final String cellphone;
   final String password;
   final String name;
   User({
-    required this.email,
+    required this.cellphone,
     required this.password,
     required this.name,
   });
 
   User copyWith({
-    String? email,
+    String? cellphone,
     String? password,
     String? name,
   }) {
     return User(
-      email: email ?? this.email,
+      cellphone: cellphone ?? this.cellphone,
       password: password ?? this.password,
       name: name ?? this.name,
     );
@@ -94,7 +94,7 @@ class User {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'email': email,
+      'cellphone': cellphone,
       'password': password,
       'name': name,
     };
@@ -102,7 +102,7 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      email: map['email'] as String,
+      cellphone: map['cellphone'] as String,
       password: map['password'] as String,
       name: map['name'] as String,
     );
@@ -114,17 +114,18 @@ class User {
       User.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'User(email: $email, password: $password, name: $name)';
+  String toString() =>
+      'User(cellphone: $cellphone, password: $password, name: $name)';
 
   @override
   bool operator ==(covariant User other) {
     if (identical(this, other)) return true;
 
-    return other.email == email &&
+    return other.cellphone == cellphone &&
         other.password == password &&
         other.name == name;
   }
 
   @override
-  int get hashCode => email.hashCode ^ password.hashCode ^ name.hashCode;
+  int get hashCode => cellphone.hashCode ^ password.hashCode ^ name.hashCode;
 }

@@ -1,10 +1,12 @@
 import 'package:dashfleet_ui/ui/controllers/log_in_controller.dart';
+import 'package:dashfleet_ui/ui/di/providers.dart';
 import 'package:dashfleet_ui/ui/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'main_page.dart';
 
-class LogInPage extends StatefulWidget {
+class LogInPage extends ConsumerStatefulWidget {
   final LogInController controller;
   const LogInPage({
     super.key,
@@ -12,10 +14,10 @@ class LogInPage extends StatefulWidget {
   });
 
   @override
-  State<LogInPage> createState() => _LogInPageState();
+  ConsumerState<LogInPage> createState() => _LogInPageState();
 }
 
-class _LogInPageState extends State<LogInPage> {
+class _LogInPageState extends ConsumerState<LogInPage> {
   final TextEditingController controllerCel = TextEditingController();
   final TextEditingController controllerPass = TextEditingController();
 
@@ -25,6 +27,12 @@ class _LogInPageState extends State<LogInPage> {
       color: Colors.grey,
     ),
   );
+  late LoginState vm;
+  @override
+  void initState() {
+    vm = ref.read(logInVM);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +74,7 @@ class _LogInPageState extends State<LogInPage> {
                       decoration: InputDecoration(
                         border: textFieldBorderStyle,
                       ),
+                      onEditingComplete: () {},
                     ),
                     const SizedBox(height: 24),
 
@@ -104,11 +113,7 @@ class _LogInPageState extends State<LogInPage> {
   }
 
   void signIn() {
-    final loginIsValid = widget.controller.onLogIn(
-      cell: controllerCel.value.text,
-      password: controllerPass.value.text,
-    );
-    if (loginIsValid) {
+    if (vm.isLoginOk) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MainBasePage()),
