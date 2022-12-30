@@ -2,21 +2,32 @@
 import 'dart:convert';
 
 /// Permite alamcenar la info basica de las rutas.
+///
+enum RouteState {
+  pending,
+  completed,
+  canceled,
+}
+
 class Route {
   final String name;
   final double distance;
+  final bool completed;
   Route({
     required this.name,
     required this.distance,
+    this.completed = false,
   });
 
   Route copyWith({
     String? name,
     double? distance,
+    bool? completed,
   }) {
     return Route(
       name: name ?? this.name,
       distance: distance ?? this.distance,
+      completed: completed ?? this.completed,
     );
   }
 
@@ -24,6 +35,7 @@ class Route {
     return <String, dynamic>{
       'name': name,
       'distance': distance,
+      'completed': completed,
     };
   }
 
@@ -31,6 +43,7 @@ class Route {
     return Route(
       name: map['name'] as String,
       distance: map['distance'] as double,
+      completed: map['completed'] as bool,
     );
   }
 
@@ -40,17 +53,20 @@ class Route {
       Route.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Route(name: $name, distance: $distance)';
+  String toString() =>
+      'Route(name: $name, distance: $distance, completed: $completed)';
 
   @override
   bool operator ==(covariant Route other) {
     if (identical(this, other)) return true;
 
-    return other.name == name && other.distance == distance;
+    return other.name == name &&
+        other.distance == distance &&
+        other.completed == completed;
   }
 
   @override
-  int get hashCode => name.hashCode ^ distance.hashCode;
+  int get hashCode => name.hashCode ^ distance.hashCode ^ completed.hashCode;
 }
 
 /// Info basica de los usuarios.
