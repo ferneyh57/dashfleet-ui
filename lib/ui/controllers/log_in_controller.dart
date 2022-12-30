@@ -1,4 +1,12 @@
+import 'package:dashfleet_ui/ui/controllers/firebase_controller.dart';
+
 class LogInController {
+  final FirebaseController firebaseRepo;
+
+  LogInController({
+    required this.firebaseRepo,
+  });
+
   /// guarda los datos de el usuario en shared prefrences.
   void onRememberUser({
     required String cell,

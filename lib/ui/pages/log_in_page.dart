@@ -91,10 +91,19 @@ class _LogInPageState extends State<LogInPage> {
                 ),
               ),
             ),
-            const _Buttons(),
+            _Buttons(
+              onTapSigInM: signIn,
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  void signIn() {
+    widget.controller.onLogIn(
+      cell: controllerCel.value.text,
+      password: controllerPass.value.text,
     );
   }
 }
@@ -135,7 +144,10 @@ class _SwitchWidgetState extends State<_SwitchWidget> {
 }
 
 class _Buttons extends StatelessWidget {
-  const _Buttons();
+  final void Function() onTapSigInM;
+  const _Buttons({
+    required this.onTapSigInM,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +168,7 @@ class _Buttons extends StatelessWidget {
               ),
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: onTapSigInM,
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 12, horizontal: 36),
