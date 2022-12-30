@@ -1,64 +1,18 @@
 import 'package:dashfleet_ui/data/entities.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 
-class RouteListWidget extends StatelessWidget {
-  final List<Routes> routesToDo;
-  final Routes routeComplete;
-  const RouteListWidget({
-    super.key,
-    required this.routesToDo,
-    required this.routeComplete,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 16),
-          const Text('ESTAS SON TUS RUTAS'),
-          const SizedBox(height: 16),
-          _RouteCardWidget(
-            route: routeComplete,
-          ),
-          const SizedBox(height: 32),
-          const Text(
-            'Estas son algunas que aun puedes realizar',
-          ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: routesToDo.length,
-              itemBuilder: (context, index) {
-                return _RouteCardWidget(
-                  route: routesToDo[index],
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _RouteCardWidget extends StatefulWidget {
+class RouteCardWidget extends StatefulWidget {
   final Routes route;
-  const _RouteCardWidget({
+  const RouteCardWidget({
+    super.key,
     required this.route,
   });
 
   @override
-  State<_RouteCardWidget> createState() => _RouteCardWidgetState();
+  State<RouteCardWidget> createState() => _RouteCardWidgetState();
 }
 
-class _RouteCardWidgetState extends State<_RouteCardWidget> {
+class _RouteCardWidgetState extends State<RouteCardWidget> {
   bool _selected = false;
   @override
   Widget build(BuildContext context) {

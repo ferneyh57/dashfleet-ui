@@ -1,9 +1,9 @@
 import 'package:dashfleet_ui/ui/mocks.dart';
 import 'package:dashfleet_ui/ui/pages/routes_page.dart';
 import 'package:dashfleet_ui/ui/pages/welcome_page.dart';
-import 'package:dashfleet_ui/ui/widgets/route_data_widget.dart';
 import 'package:flutter/material.dart';
 
+/// Pagina base
 class MainBasePage extends StatefulWidget {
   const MainBasePage({super.key});
 
@@ -17,7 +17,7 @@ class _MainBasePageState extends State<MainBasePage> {
   final List<Widget> _widgetOptions = <Widget>[
     const Text('MORE!'),
     const WelcomePage(),
-    RouteListWidget(
+    RoutesPage(
       routeComplete: mockRouteCompleted,
       routesToDo: mockRoutes,
     ),
