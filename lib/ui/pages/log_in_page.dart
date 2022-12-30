@@ -1,7 +1,27 @@
+import 'package:dashfleet_ui/ui/controllers/log_in_controller.dart';
 import 'package:flutter/material.dart';
 
-class LogInPage extends StatelessWidget {
-  const LogInPage({super.key});
+class LogInPage extends StatefulWidget {
+  final LogInController controller;
+  const LogInPage({
+    super.key,
+    required this.controller,
+  });
+
+  @override
+  State<LogInPage> createState() => _LogInPageState();
+}
+
+class _LogInPageState extends State<LogInPage> {
+  final TextEditingController controllerCel = TextEditingController();
+  final TextEditingController controllerPass = TextEditingController();
+
+  final textFieldBorderStyle = const OutlineInputBorder(
+    borderSide: BorderSide(
+      width: 1,
+      color: Colors.grey,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -20,33 +40,58 @@ class LogInPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.fromLTRB(24, 24, 24, 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ///Field para el telefono.
-            Text(
-              'celular',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            const SizedBox(height: 6),
-            TextField(),
-            const SizedBox(height: 24),
+            Flexible(
+              flex: 20,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ///Field para el telefono.
+                    Text(
+                      'celular',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    const SizedBox(height: 6),
+                    TextField(
+                      controller: controllerCel,
+                      decoration: InputDecoration(
+                        border: textFieldBorderStyle,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
 
-            ///Field para la contraseña.
-            Text(
-              'Clave',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            const SizedBox(height: 6),
-            TextField(),
-            const SizedBox(height: 24),
+                    ///Field para la contraseña.
+                    Text(
+                      'Clave',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    const SizedBox(height: 6),
+                    TextField(
+                      controller: controllerPass,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: textFieldBorderStyle,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
 
-            /// Recordar contraseña.
-            _SwitchWidget(),
-            const Spacer(),
+                    /// Recordar contraseña.
+                    _SwitchWidget(
+                      rememberUser: (remember) {
+                        if (!remember) {}
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
             const _Buttons(),
-            const Spacer(),
           ],
         ),
       ),
@@ -55,18 +100,36 @@ class LogInPage extends StatelessWidget {
 }
 
 class _SwitchWidget extends StatefulWidget {
-  const _SwitchWidget();
+  final void Function(bool remember) rememberUser;
+  const _SwitchWidget({
+    required this.rememberUser,
+  });
 
   @override
   State<_SwitchWidget> createState() => _SwitchWidgetState();
 }
 
 class _SwitchWidgetState extends State<_SwitchWidget> {
+  bool _active = false;
   @override
   Widget build(BuildContext context) {
-    return Switch(
-      value: false,
-      onChanged: (value) {},
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Switch(
+          value: _active,
+          onChanged: (value) {
+            setState(() {
+              _active = value;
+            });
+          },
+        ),
+        const SizedBox(width: 12),
+        Text(
+          'Recordar',
+          style: Theme.of(context).textTheme.bodyText1,
+        )
+      ],
     );
   }
 }
@@ -76,7 +139,11 @@ class _Buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 24,
+      ),
+      alignment: Alignment.center,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

@@ -1,3 +1,4 @@
+import 'package:dashfleet_ui/ui/di/providers.dart';
 import 'package:dashfleet_ui/ui/pages/log_in_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const LogInPage(),
+      home: LogInPage(
+        controller: logInController,
+      ),
     );
   }
 }
