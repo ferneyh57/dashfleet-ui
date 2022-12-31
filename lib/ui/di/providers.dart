@@ -1,5 +1,5 @@
 import 'package:dashfleet_ui/data/firebase_repository.dart';
-import 'package:dashfleet_ui/ui/controllers/log_in_view_model.dart';
+import 'package:dashfleet_ui/ui/vm/log_in_view_model.dart';
 import 'package:dashfleet_ui/data/user_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
