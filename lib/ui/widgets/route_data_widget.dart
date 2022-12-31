@@ -1,6 +1,7 @@
 import 'package:dashfleet_ui/data/entities.dart';
 import 'package:flutter/material.dart';
 
+/// Widget que pinta los datos de una ruta.
 class RouteCardWidget extends StatefulWidget {
   final Routes route;
   const RouteCardWidget({

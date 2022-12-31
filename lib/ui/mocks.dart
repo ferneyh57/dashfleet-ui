@@ -1,5 +1,6 @@
 import 'package:dashfleet_ui/data/entities.dart';
 
+/// Rutas disponibles.
 final List<Routes> mockRoutes = [
   Routes(
     name: 'pereira',
@@ -23,6 +24,7 @@ final List<Routes> mockRoutes = [
   ),
 ];
 
+/// Ruta completada.
 final Routes mockRouteCompleted = Routes(
   name: 'buga',
   distance: 100,

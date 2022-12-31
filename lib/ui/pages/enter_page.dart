@@ -4,6 +4,7 @@ import 'package:dashfleet_ui/ui/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// Enrutador.
 class EntryPage extends ConsumerWidget {
   const EntryPage({super.key});
 

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 
+/// Pagina de bienvenida.
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 

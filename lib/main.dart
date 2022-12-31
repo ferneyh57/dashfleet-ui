@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(); //initilization of Firebase app
+
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         home: FutureBuilder(
+          /// Se valida la conexion a firebase.
           future: Firebase.initializeApp(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {

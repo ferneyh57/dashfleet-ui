@@ -17,13 +17,13 @@ class _MainBasePageState extends ConsumerState<MainBasePage> {
   int _selectedIndex = 1;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const Text('MORE!'),
+    const Text('MAS!'),
     const WelcomePage(),
     RoutesPage(
       routeComplete: mockRouteCompleted,
       routesToDo: mockRoutes,
     ),
-    const Text('Money'),
+    const Text('Dinero'),
     const Text('Configuration'),
   ];
 
@@ -90,7 +90,7 @@ class _MainBasePageState extends ConsumerState<MainBasePage> {
               ),
             ),
             ListTile(
-              title: const Text('Welcome page'),
+              title: const Text('Seccion de bienvenida'),
               onTap: () {
                 _onItemTapped(1);
                 // Update the state of the app
@@ -100,7 +100,7 @@ class _MainBasePageState extends ConsumerState<MainBasePage> {
               },
             ),
             ListTile(
-              title: const Text('Show Routes'),
+              title: const Text('Seccion de rutas'),
               onTap: () {
                 _onItemTapped(2);
                 // Update the state of the app
@@ -122,19 +122,19 @@ class _MainBasePageState extends ConsumerState<MainBasePage> {
             icon: Icon(
               Icons.add,
             ),
-            label: 'More',
+            label: 'Mas',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Inicio',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.card_travel),
-            label: 'Routes',
+            label: 'Rutas',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.monetization_on_outlined),
-            label: 'Money',
+            label: 'Dinero',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.miscellaneous_services),

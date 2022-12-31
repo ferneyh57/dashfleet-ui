@@ -2,6 +2,7 @@ import 'package:dashfleet_ui/ui/di/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// pagina de login.
 class LogInPage extends StatefulWidget {
   const LogInPage({
     super.key,

@@ -1,5 +1,3 @@
-import 'package:dashfleet_ui/data/auth_repository.dart';
-import 'package:dashfleet_ui/data/entities.dart';
 import 'package:dashfleet_ui/data/firebase_repository.dart';
 import 'package:dashfleet_ui/ui/controllers/log_in_view_model.dart';
 import 'package:dashfleet_ui/data/user_repository.dart';
@@ -12,16 +10,14 @@ final logInVM = StateNotifierProvider.autoDispose<LoginVM, LoginState>((ref) {
   );
 });
 
+/// repositorio de usuario.
 final userProvider = Provider<UserRepository>((ref) {
   return UserRepository();
 });
-final firebaseRepository = Provider<FirebaseRepository>((ref) {
+
+/// repositorio de firebase.
+final firebaseRepository = Provider.autoDispose<FirebaseRepository>((ref) {
   return FirebaseRepository(
     userRepository: ref.read(userProvider),
   );
-});
-
-final authProvider =
-    StateNotifierProvider.autoDispose<AuthRepository, bool>((ref) {
-  return AuthRepository();
 });
