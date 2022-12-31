@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirebaseController {
+class FirebaseRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 // Sign in a user with their phone number and password
@@ -8,8 +8,8 @@ class FirebaseController {
       {required String phoneNumber, required String password}) async {
     // Get the user document with the matching phone number
     QuerySnapshot snapshot = await _firestore
-        .collection('users')
-        .where('phoneNumber', isEqualTo: phoneNumber)
+        .collection('Users')
+        .where('cellphone', isEqualTo: phoneNumber)
         .get();
     if (snapshot.docs.isEmpty) {
       // No matching documents found

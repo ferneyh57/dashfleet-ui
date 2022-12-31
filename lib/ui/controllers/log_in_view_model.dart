@@ -21,7 +21,7 @@ class LoginState {
 }
 
 class LoginVM extends StateNotifier<LoginState> {
-  final FirebaseController firebaseRepo;
+  final FirebaseRepository firebaseRepo;
 
   LoginVM({
     required this.firebaseRepo,
@@ -32,6 +32,11 @@ class LoginVM extends StateNotifier<LoginState> {
         );
 
   void onSwitchRememberUser(bool remember) {}
+
+  void isDataOk({
+    required String cell,
+    required String pass,
+  }) {}
 
   /// Permite loguerase.
   void onLogIn({

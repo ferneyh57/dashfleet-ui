@@ -1,4 +1,4 @@
-import 'package:dashfleet_ui/ui/controllers/log_in_controller.dart';
+import 'package:dashfleet_ui/ui/controllers/log_in_view_model.dart';
 import 'package:dashfleet_ui/ui/di/providers.dart';
 import 'package:dashfleet_ui/ui/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
@@ -6,16 +6,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'main_page.dart';
 
-class LogInPage extends ConsumerStatefulWidget {
+class LogInPage extends StatefulWidget {
   const LogInPage({
     super.key,
   });
 
   @override
-  ConsumerState<LogInPage> createState() => _LogInPageState();
+  State<LogInPage> createState() => _LogInPageState();
 }
 
-class _LogInPageState extends ConsumerState<LogInPage> {
+class _LogInPageState extends State<LogInPage> {
   final TextEditingController controllerCel = TextEditingController();
   final TextEditingController controllerPass = TextEditingController();
 
@@ -81,6 +81,7 @@ class _LogInPageState extends ConsumerState<LogInPage> {
                       decoration: InputDecoration(
                         border: textFieldBorderStyle,
                       ),
+                      onEditingComplete: () {},
                     ),
                     const SizedBox(height: 24),
 
@@ -92,20 +93,16 @@ class _LogInPageState extends ConsumerState<LogInPage> {
                 ),
               ),
             ),
-            _Buttons(
-              onTapSigInM: () {
-                ref.read(logInVM.notifier).onLogIn(
-                      cell: controllerCel.value.text,
-                      pass: controllerPass.value.text,
-                    );
-                if (ref.read(logInVM).isLoginOk) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MainBasePage()),
-                  );
-                  ref.read(logInVM.notifier).resetData();
-                }
+            Consumer(
+              builder: (context, ref, child) {
+                return _Buttons(
+                  onTapSigInM: () {
+                    ref.read(logInVM.notifier).onLogIn(
+                          cell: controllerCel.value.text,
+                          pass: controllerPass.value.text,
+                        );
+                  },
+                );
               },
             ),
           ],

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "914701615945",
+    "project_id": "dashfleet-5a251",
+    "storage_bucket": "dashfleet-5a251.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914701615945:android:60d51d4b24bad6d3915098",
+        "android_client_info": {
+          "package_name": "com.example.dashfleet_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914701615945-qq0spmsh9134h91alkqkp8d6p7a8b646.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXhm-m78DVMjiX4MlpukEMvd1enXS7VC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914701615945-qq0spmsh9134h91alkqkp8d6p7a8b646.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
