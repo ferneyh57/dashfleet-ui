@@ -7,10 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'main_page.dart';
 
 class LogInPage extends ConsumerStatefulWidget {
-  final LogInController controller;
   const LogInPage({
     super.key,
-    required this.controller,
   });
 
   @override
@@ -27,12 +25,6 @@ class _LogInPageState extends ConsumerState<LogInPage> {
       color: Colors.grey,
     ),
   );
-  late LoginState vm;
-  @override
-  void initState() {
-    vm = ref.read(logInVM);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +66,6 @@ class _LogInPageState extends ConsumerState<LogInPage> {
                       decoration: InputDecoration(
                         border: textFieldBorderStyle,
                       ),
-                      onEditingComplete: () {},
                     ),
                     const SizedBox(height: 24),
 
@@ -95,30 +86,32 @@ class _LogInPageState extends ConsumerState<LogInPage> {
 
                     /// Recordar contraseña.
                     _SwitchWidget(
-                      rememberUser: (remember) {
-                        if (!remember) {}
-                      },
+                      rememberUser: (remember) {},
                     ),
                   ],
                 ),
               ),
             ),
             _Buttons(
-              onTapSigInM: signIn,
+              onTapSigInM: () {
+                ref.read(logInVM.notifier).onLogIn(
+                      cell: controllerCel.value.text,
+                      pass: controllerPass.value.text,
+                    );
+                if (ref.read(logInVM).isLoginOk) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MainBasePage()),
+                  );
+                  ref.read(logInVM.notifier).resetData();
+                }
+              },
             ),
           ],
         ),
       ),
     );
-  }
-
-  void signIn() {
-    if (vm.isLoginOk) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MainBasePage()),
-      );
-    }
   }
 }
 

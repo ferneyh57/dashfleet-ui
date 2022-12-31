@@ -5,12 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// Controlador firebase.
 final firebaseController = FirebaseController();
 
-/// Controlador login.
-final logInController = LogInController(
-  firebaseRepo: firebaseController,
-);
-
-final logInVM = StateNotifierProvider<LoginVM, LoginState>((ref) {
+final logInVM = StateNotifierProvider.autoDispose<LoginVM, LoginState>((ref) {
   return LoginVM(
     firebaseRepo: firebaseController,
   );

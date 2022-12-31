@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseController {
-  /*
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 // Sign in a user with their phone number and password
@@ -25,5 +24,5 @@ class FirebaseController {
       // Incorrect password
       return false;
     }
-  }*/
+  }
 }
