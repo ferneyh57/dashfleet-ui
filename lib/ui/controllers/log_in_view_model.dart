@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dashfleet_ui/ui/controllers/firebase_controller.dart';
+import 'package:dashfleet_ui/data/firebase_repository.dart';
 
 class LoginState {
   final bool isLoginOk;
@@ -33,11 +32,6 @@ class LoginVM extends StateNotifier<LoginState> {
 
   void onSwitchRememberUser(bool remember) {}
 
-  void isDataOk({
-    required String cell,
-    required String pass,
-  }) {}
-
   /// Permite loguerase.
   void onLogIn({
     required String cell,
@@ -51,15 +45,5 @@ class LoginVM extends StateNotifier<LoginState> {
         );
       }
     }
-  }
-
-  /// Recuperar la contraseña mediante el numero de celular.
-  void onForgotPass(String cell) {
-    //TODO:
-  }
-  void resetData() {
-    state = state.copyWith(
-      isLoginOk: false,
-    );
   }
 }

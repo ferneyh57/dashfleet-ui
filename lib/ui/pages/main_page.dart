@@ -1,17 +1,19 @@
+import 'package:dashfleet_ui/ui/di/providers.dart';
 import 'package:dashfleet_ui/ui/mocks.dart';
 import 'package:dashfleet_ui/ui/pages/routes_page.dart';
 import 'package:dashfleet_ui/ui/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Pagina base
-class MainBasePage extends StatefulWidget {
+class MainBasePage extends ConsumerStatefulWidget {
   const MainBasePage({super.key});
 
   @override
-  State<MainBasePage> createState() => _MainBasePageState();
+  ConsumerState<MainBasePage> createState() => _MainBasePageState();
 }
 
-class _MainBasePageState extends State<MainBasePage> {
+class _MainBasePageState extends ConsumerState<MainBasePage> {
   int _selectedIndex = 1;
 
   final List<Widget> _widgetOptions = <Widget>[
@@ -41,7 +43,7 @@ class _MainBasePageState extends State<MainBasePage> {
         title: Column(
           children: [
             Text(
-              'Ferney Hurtado',
+              ref.read(userProvider).currentUser.name,
               style: Theme.of(context).textTheme.headline5!.copyWith(
                     color: Colors.white,
                   ),

@@ -1,10 +1,6 @@
-import 'package:dashfleet_ui/ui/controllers/log_in_view_model.dart';
 import 'package:dashfleet_ui/ui/di/providers.dart';
-import 'package:dashfleet_ui/ui/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'main_page.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({
